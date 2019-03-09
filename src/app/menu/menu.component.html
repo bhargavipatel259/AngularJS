@@ -2,14 +2,40 @@
      fxLayout="column"
      fxLayoutGap="10px">
 
-  <mat-list fxFlex>
-    <mat-list-item *ngFor="let project of projects">
-      <img matListAvatar src={{project.image}} alt={{project.name}}>
-      <h1 matLine> {{project.name}} </h1>
-      <p matLine>
-        <span> {{project.description}} </span>
-      </p>
-    </mat-list-item>
-  </mat-list>
+  <div fxFlex>
+    <div>
+      <h3 align = "center"> MY PROJECTS </h3>
+      <hr>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-grid-list cols="2" rowHeight="200px">
+      <mat-grid-tile *ngFor="let project of projects">
+        <img height="200px" src={{project.image}} alt={{project.name}}>
+        <mat-grid-tile-footer>
+          <h1>{{project.name | uppercase}}</h1>
+        </mat-grid-tile-footer>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <div fxFlex *ngIf="selectedProject">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h3>{{selectedProject.name | uppercase}}</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{selectedProject.image}} alt={{selectedProject.name}}>
+      <mat-card-content>
+        <p>{{selectedProject.description}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button> VIEW SOURCECODE </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 
 </div>
